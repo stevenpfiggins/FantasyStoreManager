@@ -15,8 +15,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new StoreService(userId);
+            var service = CreateStoreService();
             var model = service.GetStores();
             return View(model);
         }
@@ -32,14 +31,22 @@ namespace FantasyStoreManager.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoreCreate model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+            var service = CreateStoreService();
+            if (service.CreateStore(model))
             {
-                return View(model);
-            }
+                ViewBag.SaveResult = "Your store was created.";
+                return RedirectToAction("Index");
+            };
+            ModelState.AddModelError("", "Store could not be created.");
+            return View(model);
+        }
+
+        private StoreService CreateStoreService()
+        {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new StoreService(userId);
-            service.CreateStore(model);
-            return RedirectToAction("Index");
+            return service;
         }
     }
 }
