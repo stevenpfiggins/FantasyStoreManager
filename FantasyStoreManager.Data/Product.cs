@@ -54,10 +54,15 @@ namespace FantasyStoreManager.Data
     {
         [Key]
         public int ProductId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public ProductType TypeOfProduct { get; set; }
+        [Required]
         public int Price { get; set; }
+        [Required]
         public bool IsMagical { get; set; }
 
         public virtual ICollection<Inventory> Inventories { get; set; }

@@ -1,5 +1,4 @@
-﻿using FantasyStoreManager.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,14 +6,12 @@ using System.Web.Mvc;
 
 namespace FantasyStoreManager.WebMVC.Controllers
 {
-    [Authorize]
-    public class StoreController : Controller
+    public class CustomerController : Controller
     {
-        // GET: Store
+        // GET: Customer
         public ActionResult Index()
         {
-            var model = new StoreListItem[0];
-            return View(model);
+            return View();
         }
     }
 }

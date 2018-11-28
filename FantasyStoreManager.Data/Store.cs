@@ -25,12 +25,10 @@ namespace FantasyStoreManager.Data
         [Required]
         public Guid OwnerId { get; set; }
         [Required]
-        [MaxLength(50, ErrorMessage = "There are too many characters in this field.")]
         public string Name { get; set; }
         [Required]
         public string Location { get; set; }
         [Required]
-        [Display(Name = "Store Type")]
         public StoreType TypeofStore { get; set; }
 
         public virtual ICollection<Inventory> Inventories { get; set; }
