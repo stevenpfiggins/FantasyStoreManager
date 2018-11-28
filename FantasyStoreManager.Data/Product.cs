@@ -10,43 +10,43 @@ namespace FantasyStoreManager.Data
 {
     public enum ProductType
     {
-        [Description("Ammunition")]
+        [Display(Name ="Ammunition")]
         Ammunition,
-        [Description("Armor, Heavy")]
+        [Display(Name ="Armor, Heavy")]
         HeavyArmor = 1,
-        [Description("Armor, Light")]
+        [Display(Name ="Armor, Light")]
         LightArmor,
-        [Description("Armor, Medium")]
+        [Display(Name ="Armor, Medium")]
         MediumArmor,
-        [Description("Good")]
+        [Display(Name ="Good")]
         Good,
-        [Description("Herb")]
+        [Display(Name ="Herb")]
         Herb,
-        [Description("Kit")]
+        [Display(Name ="Kit")]
         Kit,
-        [Description("Literature")]
+        [Display(Name ="Literature")]
         Literature,
-        [Description("Mount")]
+        [Display(Name ="Mount")]
         Mount,
-        [Description("Martial Melee")]
+        [Display(Name ="Martial Melee")]
         MartialMelee,
-        [Description("Martial Ranged")]
+        [Display(Name ="Martial Ranged")]
         MartialRanged,
-        [Description("Pack")]
+        [Display(Name ="Pack")]
         Pack,
-        [Description("Potion")]
+        [Display(Name ="Potion")]
         Potion,
-        [Description("Shield")]
+        [Display(Name ="Shield")]
         Shield,
-        [Description("Simple Melee")]
+        [Display(Name ="Simple Melee")]
         SimpleMelee,
-        [Description("Simple Ranged")]
+        [Display(Name ="Simple Ranged")]
         SimpleRanged,
-        [Description("Tool")]
+        [Display(Name ="Tool")]
         Tool,
-        [Description("Trinket")]
+        [Display(Name ="Trinket")]
         Trinket,
-        [Description("Vehicle")]
+        [Display(Name ="Vehicle")]
         Vehicle
     }
 

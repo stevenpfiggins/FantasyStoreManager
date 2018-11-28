@@ -1,4 +1,6 @@
 ﻿using FantasyStoreManager.Models;
+using FantasyStoreManager.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,9 @@ namespace FantasyStoreManager.WebMVC.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            var model = new StoreListItem[0];
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new StoreService(userId);
+            var model = service.GetStores();
             return View(model);
         }
 
@@ -28,9 +32,14 @@ namespace FantasyStoreManager.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoreCreate model)
         {
-            if (ModelState.IsValid) { }
-
-            return View(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new StoreService(userId);
+            service.CreateStore(model);
+            return RedirectToAction("Index");
         }
     }
 }

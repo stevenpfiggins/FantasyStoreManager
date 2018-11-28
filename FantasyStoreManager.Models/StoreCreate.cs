@@ -19,6 +19,7 @@ namespace FantasyStoreManager.Models
         [MaxLength(35, ErrorMessage = "The maximum length of this field is 35 characters.")]
         public string Location { get; set; }
         [Required]
+        [Display(Name = "Store Type")]
         public StoreType TypeOfStore { get; set; }
     }
 }
