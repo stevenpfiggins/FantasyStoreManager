@@ -86,6 +86,18 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return View();
         }
 
+        //DELETE:
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var service = CreateStoreService();
+            service.DeleteStore(id);
+            TempData["SaveResult"] = "Your store was destroyed by murderhobos.";
+            return RedirectToAction("Index");
+        }
+
         private StoreService CreateStoreService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

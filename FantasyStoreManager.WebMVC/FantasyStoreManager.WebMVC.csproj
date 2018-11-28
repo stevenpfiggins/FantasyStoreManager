@@ -248,6 +248,7 @@
     <Content Include="Views\Store\Create.cshtml" />
     <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Store\Edit.cshtml" />
+    <Content Include="Views\Store\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -76,6 +76,16 @@ namespace FantasyStoreManager.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteStore(int storeId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Stores.Single(e => e.StoreId == storeId && e.OwnerId == _userId);
+                ctx.Stores.Remove(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
     
 }
