@@ -64,7 +64,18 @@ namespace FantasyStoreManager.Services
                 };
             }
         }
-    }
 
+        public bool UpdateStore(StoreEdit model)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Stores.Single(e => e.StoreId == model.StoreId && e.OwnerId == _userId);
+                entity.Name = model.Name;
+                entity.Location = model.Location;
+                entity.TypeofStore = model.TypeOfStore;
+                return ctx.SaveChanges() == 1;
+            }
+        }
+    }
     
 }

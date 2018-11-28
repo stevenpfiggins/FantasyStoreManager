@@ -42,11 +42,48 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return View(model);
         }
 
+        //GET:
         public ActionResult Details(int id)
         {
             var svc = CreateStoreService();
             var model = svc.GetStoreById(id);
             return View(model);
+        }
+
+        //GET:
+        public ActionResult Edit(int id)
+        {
+            var service = CreateStoreService();
+            var detail = service.GetStoreById(id);
+            var model = new StoreEdit
+            {
+                StoreId = detail.StoreId,
+                Name = detail.Name,
+                Location = detail.Location,
+                TypeOfStore = detail.TypeOfStore
+            };
+            return View(model);
+        }
+
+        //POST:
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, StoreEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            if(model.StoreId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+            var service = CreateStoreService();
+            if (service.UpdateStore(model))
+            {
+                TempData["SaveResult"] = "Your store was updated.";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Your store could not be updated.");
+            return View();
         }
 
         private StoreService CreateStoreService()
