@@ -35,7 +35,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
             var service = CreateStoreService();
             if (service.CreateStore(model))
             {
-                ViewBag.SaveResult = "Your store was created.";
+                TempData["SaveResult"] = "Your store was created.";
                 return RedirectToAction("Index");
             };
             ModelState.AddModelError("", "Store could not be created.");
