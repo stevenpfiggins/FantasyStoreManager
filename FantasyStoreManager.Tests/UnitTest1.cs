@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FantasyStoreManager.WebMVC
+namespace FantasyStoreManager.Tests
 {
     [TestClass]
     public class UnitTest1
