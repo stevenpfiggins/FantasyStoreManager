@@ -42,6 +42,13 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Details(int id)
+        {
+            var svc = CreateStoreService();
+            var model = svc.GetStoreById(id);
+            return View(model);
+        }
+
         private StoreService CreateStoreService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

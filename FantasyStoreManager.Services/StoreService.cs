@@ -49,6 +49,21 @@ namespace FantasyStoreManager.Services
                 return query.ToArray();
             }
         }
+
+        public StoreDetail GetStoreById(int storeId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Stores.Single(e => e.StoreId == storeId && e.OwnerId == _userId);
+                return new StoreDetail
+                {
+                    StoreId = entity.StoreId,
+                    Name = entity.Name,
+                    Location = entity.Location,
+                    TypeOfStore = entity.TypeofStore
+                };
+            }
+        }
     }
 
     
