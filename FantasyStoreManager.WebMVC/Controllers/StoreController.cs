@@ -16,5 +16,21 @@ namespace FantasyStoreManager.WebMVC.Controllers
             var model = new StoreListItem[0];
             return View(model);
         }
+
+        //GET:
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //POST:
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(StoreCreate model)
+        {
+            if (ModelState.IsValid) { }
+
+            return View(model);
+        }
     }
 }
