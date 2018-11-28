@@ -35,10 +35,10 @@ namespace FantasyStoreManager.WebMVC.Controllers
             var service = CreateStoreService();
             if (service.CreateStore(model))
             {
-                TempData["SaveResult"] = "Your store was created.";
+                TempData["SaveResult"] = "Your store was built.";
                 return RedirectToAction("Index");
             };
-            ModelState.AddModelError("", "Store could not be created.");
+            ModelState.AddModelError("", "Store could not be built.");
             return View(model);
         }
 
@@ -79,18 +79,27 @@ namespace FantasyStoreManager.WebMVC.Controllers
             var service = CreateStoreService();
             if (service.UpdateStore(model))
             {
-                TempData["SaveResult"] = "Your store was updated.";
+                TempData["SaveResult"] = "Your store was refurbished.";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Your store could not be updated.");
+            ModelState.AddModelError("", "Your store could not be refurbished.");
             return View();
+        }
+
+        //GET:
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = CreateStoreService();
+            var model = svc.GetStoreById(id);
+            return View(model);
         }
 
         //DELETE:
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public ActionResult DeletePost(int id)
         {
             var service = CreateStoreService();
             service.DeleteStore(id);
