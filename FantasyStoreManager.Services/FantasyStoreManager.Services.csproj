@@ -55,10 +55,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FantasyStoreManager.Data\FantasyStoreManager.Data.csproj">
+      <Project>{de4c6de8-7ab1-426c-8bfc-1da101df3b66}</Project>
+      <Name>FantasyStoreManager.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FantasyStoreManager.Models\FantasyStoreManager.Models.csproj">
+      <Project>{7b0caebf-0a37-4824-8b8e-cd74d98a965b}</Project>
+      <Name>FantasyStoreManager.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
