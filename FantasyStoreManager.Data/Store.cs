@@ -32,5 +32,7 @@ namespace FantasyStoreManager.Data
         [Required]
         [Display(Name = "Store Type")]
         public StoreType TypeofStore { get; set; }
+
+        public virtual ICollection<Inventory> Inventories { get; set; }
     }
 }

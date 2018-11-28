@@ -59,5 +59,7 @@ namespace FantasyStoreManager.Data
         public ProductType TypeOfProduct { get; set; }
         public int Price { get; set; }
         public bool IsMagical { get; set; }
+
+        public virtual ICollection<Inventory> Inventories { get; set; }
     }
 }
