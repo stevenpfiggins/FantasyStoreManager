@@ -61,7 +61,7 @@ namespace FantasyStoreManager.Data
         [Required]
         public ProductType TypeOfProduct { get; set; }
         [Required]
-        public int Price { get; set; }
+        public string Price { get; set; }
         [Required]
         public bool IsMagical { get; set; }
 
