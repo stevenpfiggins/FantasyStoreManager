@@ -40,6 +40,7 @@ namespace FantasyStoreManager.Services
 
         public IEnumerable<ProductListItem> GetProducts()
         {
+            //List<ProductListItem> replaceproductListItems = new List<ProductListItem>();
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Products.Select(e => new ProductListItem
@@ -47,10 +48,28 @@ namespace FantasyStoreManager.Services
                     ProductId = e.ProductId,
                     Name = e.Name,
                     Price = e.Price,
-                    TypeOfProduct = e.TypeOfProduct,
+                    TypeOfProduct = e.TypeOfProduct.ToString(),
                     IsMagical = e.IsMagical
                 });
 
+                //foreach (var q in query)
+                //{
+                //    foreach (char c in q.TypeOfProduct.Skip<char>(1))
+                //    {
+                //        if (char.IsUpper(c))
+                //        {
+                //            var i = q.TypeOfProduct.IndexOf(c);
+                //            q.TypeOfProduct.Insert(i, " ");
+                //            //q.CharacterRace.Split(q.CharacterRace[c], " ");
+                //        }
+                //    }
+                //    //if (q.CharacterRace.Split(  )
+                //    //    q.CharacterRace = q.CharacterRace.Replace("_", " ");
+                //    replaceproductListItems.Add(q);
+
+                //};
+
+                ////return replaceproductListItems.ToArray();
                 return query.ToArray();
             }
         }
