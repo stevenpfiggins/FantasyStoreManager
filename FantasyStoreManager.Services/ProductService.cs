@@ -40,7 +40,6 @@ namespace FantasyStoreManager.Services
 
         public IEnumerable<ProductListItem> GetProducts()
         {
-            //List<ProductListItem> replaceproductListItems = new List<ProductListItem>();
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Products.Select(e => new ProductListItem
@@ -48,29 +47,27 @@ namespace FantasyStoreManager.Services
                     ProductId = e.ProductId,
                     Name = e.Name,
                     Price = e.Price,
-                    TypeOfProduct = e.TypeOfProduct.ToString(),
+                    TypeOfProduct = e.TypeOfProduct,
                     IsMagical = e.IsMagical
                 });
-
-                //foreach (var q in query)
-                //{
-                //    foreach (char c in q.TypeOfProduct.Skip<char>(1))
-                //    {
-                //        if (char.IsUpper(c))
-                //        {
-                //            var i = q.TypeOfProduct.IndexOf(c);
-                //            q.TypeOfProduct.Insert(i, " ");
-                //            //q.CharacterRace.Split(q.CharacterRace[c], " ");
-                //        }
-                //    }
-                //    //if (q.CharacterRace.Split(  )
-                //    //    q.CharacterRace = q.CharacterRace.Replace("_", " ");
-                //    replaceproductListItems.Add(q);
-
-                //};
-
-                ////return replaceproductListItems.ToArray();
                 return query.ToArray();
+            }
+        }
+
+        public ProductDetail GetProductById(int productId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Products.Single(e => e.ProductId == productId);
+                return new ProductDetail
+                {
+                    ProductId = entity.ProductId,
+                    Name = entity.Name,
+                    Description = entity.Description,
+                    TypeOfProduct = entity.TypeOfProduct,
+                    Price = entity.Price,
+                    IsMagical = entity.IsMagical
+                };
             }
         }
 
@@ -96,18 +93,6 @@ namespace FantasyStoreManager.Services
                 ctx.Products.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
-        }
-    }
-
-    public static class EnumExtensions
-    {
-        public static string GetDisplayName(this Enum enumValue)
-        {
-            return enumValue.GetType()
-                            .GetMember(enumValue.ToString())
-                            .First()
-                            .GetCustomAttribute<DisplayAttribute>()
-                            .GetName();
         }
     }
 }

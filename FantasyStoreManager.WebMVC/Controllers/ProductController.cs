@@ -1,4 +1,5 @@
-﻿using FantasyStoreManager.Models;
+﻿using FantasyStoreManager.Data;
+using FantasyStoreManager.Models;
 using FantasyStoreManager.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -16,6 +17,12 @@ namespace FantasyStoreManager.WebMVC.Controllers
         {
             var service = CreateProductService();
             var model = service.GetProducts();
+
+            foreach(var item  in model)
+            {
+                item.TypeOfProductString = PrivateEnumHelper(item.TypeOfProduct);
+            }
+
             return View(model);
         }
 
@@ -41,11 +48,28 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return View(model);
         }
 
+        //GET:
+        public ActionResult Details(int id)
+        {
+            var svc = CreateProductService();
+            var model = svc.GetProductById(id);
+            model.TypeOfProductString = PrivateEnumHelper(model.TypeOfProduct);
+
+            return View(model);
+        }
+
         private ProductService CreateProductService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new ProductService(userId);
             return service;
+        }
+
+        private string PrivateEnumHelper(ProductType productType)
+        {
+            var item = EnumHelper<ProductType>.GetDisplayValue(productType);
+
+            return item;
         }
     }
 }

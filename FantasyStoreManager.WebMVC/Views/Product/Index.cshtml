@@ -38,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TypeOfProduct)
+                @Html.DisplayFor(modelItem => item.TypeOfProductString)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
@@ -52,9 +52,9 @@
                 <td>Non-Magical</td>
             }
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
             </td>
         </tr>
     }

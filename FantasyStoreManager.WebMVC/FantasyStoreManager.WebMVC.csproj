@@ -251,6 +251,7 @@
     <Content Include="Views\Store\Delete.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -282,6 +283,10 @@
     <ProjectReference Include="..\FantasyStoreManager.Services\FantasyStoreManager.Services.csproj">
       <Project>{cb329fac-747a-4dbf-93f8-fa30f0ae39dd}</Project>
       <Name>FantasyStoreManager.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FantasyStoreManager.Utils\FantasyStoreManager.Utils.csproj">
+      <Project>{238fa17c-7734-43f6-810b-ee87f276c522}</Project>
+      <Name>FantasyStoreManager.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

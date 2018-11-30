@@ -14,11 +14,10 @@ namespace FantasyStoreManager.Models
         public int ProductId { get; set; }
         public string Name { get; set; }
         [Display(Name = "Product Type")]
-        public string TypeOfProduct { get; set; }
+        public ProductType TypeOfProduct { get; set; }
+        public string TypeOfProductString { get; set; }
         public string Price { get; set; }
         [Display(Name = "Magical/Non-Magical")]
         public bool IsMagical { get; set; }
-
-        public override string ToString() => Name;
     }
 }
