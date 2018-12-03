@@ -58,6 +58,66 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return View(model);
         }
 
+        //GET:
+        public ActionResult Edit(int id)
+        {
+            var service = CreateProductService();
+            var detail = service.GetProductById(id);
+            var model = new ProductEdit
+            {
+                ProductId = detail.ProductId,
+                Name = detail.Name,
+                Description = detail.Description,
+                TypeOfProduct = detail.TypeOfProduct,
+                Price = detail.Price,
+                IsMagical = detail.IsMagical
+            };
+            return View(model);
+        }
+
+        //POST:
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ProductEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            if (model.ProductId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+            var service = CreateProductService();
+            if (service.UpdateProduct(model))
+            {
+                TempData["SaveResult"] = $"Your {model.Name} was repaired.";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", $"Your {model.Name} could not be repaired.");
+            return View();
+        }
+
+        //GET:
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = CreateProductService();
+            var model = svc.GetProductById(id);
+            model.TypeOfProductString = PrivateEnumHelper(model.TypeOfProduct);
+            return View(model);
+        }
+
+        //DELETE:
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = CreateProductService();
+            service.DeleteProduct(id);
+            TempData["SaveResult"] = $"Your item was stolen by brigands.";
+            return RedirectToAction("Index");
+        }
+
         private ProductService CreateProductService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
