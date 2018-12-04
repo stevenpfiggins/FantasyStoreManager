@@ -67,5 +67,22 @@ namespace FantasyStoreManager.Services
                 return query.ToArray();
             }
         }
+
+        public ProductDetail GetProductById(int productId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Products.Single(e => e.ProductId == productId);
+                return new ProductDetail
+                {
+                    ProductId = entity.ProductId,
+                    Name = entity.Name,
+                    Description = entity.Description,
+                    TypeOfProduct = entity.TypeOfProduct,
+                    Price = entity.Price,
+                    IsMagical = entity.IsMagical
+                };
+            }
+        }
     }
 }

@@ -22,4 +22,3 @@ namespace FantasyStoreManager.Models
         public int UniqueProducts { get; set; }
     }
 }
-}

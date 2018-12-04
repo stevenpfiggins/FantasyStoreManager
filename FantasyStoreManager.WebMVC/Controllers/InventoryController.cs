@@ -26,6 +26,8 @@ namespace FantasyStoreManager.WebMVC.Controllers
         {
             var storeList = new SelectList(db.Stores, "StoreId", "Name");
             ViewBag.StoreId = storeList;
+            var productList = new SelectList(db.Products, "ProductId", "Name");
+            ViewBag.ProductId = productList;
             return View();
         }
 
@@ -44,6 +46,17 @@ namespace FantasyStoreManager.WebMVC.Controllers
 
             ModelState.AddModelError("", "Product could not be added.");
             ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "Name", model.StoreId);
+            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name", model.ProductId);
+
+            return View(model);
+        }
+
+        //GET:
+        public ActionResult Details(int id)
+        {
+            var svc = CreateInventoryService();
+            var model = svc.GetProductById(id);
+            model.TypeOfProductString = PrivateEnumHelper(model.TypeOfProduct);
 
             return View(model);
         }

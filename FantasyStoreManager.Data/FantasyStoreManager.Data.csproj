@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201811291349378_ChangedPriceFromIntToString.Designer.cs">
       <DependentUpon>201811291349378_ChangedPriceFromIntToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812041650415_AddOwnerIdInventory.cs" />
+    <Compile Include="Migrations\201812041650415_AddOwnerIdInventory.Designer.cs">
+      <DependentUpon>201812041650415_AddOwnerIdInventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811291349378_ChangedPriceFromIntToString.resx">
       <DependentUpon>201811291349378_ChangedPriceFromIntToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812041650415_AddOwnerIdInventory.resx">
+      <DependentUpon>201812041650415_AddOwnerIdInventory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
