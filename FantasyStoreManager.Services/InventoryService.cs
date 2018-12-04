@@ -1,0 +1,71 @@
+﻿using FantasyStoreManager.Data;
+using FantasyStoreManager.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FantasyStoreManager.Services
+{
+    public class InventoryService
+    {
+        private readonly Guid _userId;
+
+        public InventoryService(Guid userId)
+        {
+            _userId = userId;
+        }
+
+        public bool CreateInventory(InventoryCreate model)
+        {
+            var entity = new Inventory()
+            {
+                InventoryID = model.InventoryID,
+                StoreId = model.StoreId,
+                ProductId = model.ProductId,
+                Quantity = model.Quantity
+            };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Inventories.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<InventoryListItem> GetStoreInventories(int storeId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Inventories.Where( e => e.OwnerId == _userId && e.StoreId == storeId).Select(e => new InventoryListItem
+                {
+                    InventoryId = e.InventoryID,
+                    ProductId = e.Product.ProductId,
+                    Name = e.Product.Name,
+                    Description = e.Product.Description,
+                    Quantity = e.Quantity
+                });
+
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<StoreWithUniqueProductListItem> GetStores()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Stores.Where(e => e.OwnerId == _userId).Select(e => new StoreWithUniqueProductListItem
+                {
+                    StoreId = e.StoreId,
+                    Name = e.Name,
+                    Location = e.Location,
+                    TypeOfStore = e.TypeofStore,
+                    UniqueProducts = GetStoreInventories(e.StoreId).Count()
+                });
+
+                return query.ToArray();
+            }
+        }
+    }
+}

@@ -8,14 +8,18 @@ using System.Threading.Tasks;
 
 namespace FantasyStoreManager.Models
 {
-    public class StoreListItem
+    public class StoreWithUniqueProductListItem
     {
         [Display(Name = "Store ID")]
         public int StoreId { get; set; }
+
         public string Name { get; set; }
         public string Location { get; set; }
+
         [Display(Name = "Store Type")]
         public StoreType TypeOfStore { get; set; }
-        public int UniqueItems { get; set; }
+
+        public int UniqueProducts { get; set; }
     }
+}
 }

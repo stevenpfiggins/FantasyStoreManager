@@ -5,18 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FantasyStoreManager.Data
+namespace FantasyStoreManager.Models
 {
-    public class Inventory
+    public class InventoryCreate
     {
-        [Key]
+        [Required]
         public int InventoryID { get; set; }
-        public Guid OwnerId { get; set; }
-        public int StoreId { get; set; }
-        public int ProductId { get; set; }
-        public int Quantity { get; set; }
 
-        public virtual Store Store { get; set; }
-        public virtual Product Product { get; set; }        
+        [Display(Name ="Store Select")]
+        public int StoreId { get; set; }
+
+        [Display(Name ="Product Select")]
+        public int ProductId { get; set; }
+
+        public int Quantity { get; set; }
     }
 }

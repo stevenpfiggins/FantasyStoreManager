@@ -54,6 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InventoryCreate.cs" />
+    <Compile Include="InventoryDetail.cs" />
+    <Compile Include="InventoryEdit.cs" />
+    <Compile Include="InventoryListItem.cs" />
     <Compile Include="ProductCreate.cs" />
     <Compile Include="ProductDetail.cs" />
     <Compile Include="ProductEdit.cs" />
@@ -63,6 +67,7 @@
     <Compile Include="StoreDetail.cs" />
     <Compile Include="StoreEdit.cs" />
     <Compile Include="StoreListItem.cs" />
+    <Compile Include="StoreWithUniqueProductListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
