@@ -24,7 +24,8 @@ namespace FantasyStoreManager.WebMVC.Controllers
         //GET:
         public ActionResult Create()
         {
-            var storeList = new SelectList(db.Stores, "StoreId", "Name");
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var storeList = new SelectList(db.Stores.Where(s => s.OwnerId == userId).ToList() , "StoreId", "Name");
             ViewBag.StoreId = storeList;
             var productList = new SelectList(db.Products, "ProductId", "Name");
             ViewBag.ProductId = productList;
@@ -51,8 +52,15 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return View(model);
         }
 
-        //GET:
-        public ActionResult Details(int id)
+        public ActionResult InventoryIndex(int id)
+        {
+            var svc = CreateInventoryService();
+            var model = svc.GetStoreInventories(id);
+
+            return View(model);
+        }
+
+        public ActionResult ProductDetails(int id)
         {
             var svc = CreateInventoryService();
             var model = svc.GetProductById(id);

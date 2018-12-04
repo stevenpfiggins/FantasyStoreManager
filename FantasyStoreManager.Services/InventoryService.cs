@@ -21,7 +21,6 @@ namespace FantasyStoreManager.Services
         {
             var entity = new Inventory()
             {
-                InventoryID = model.InventoryID,
                 StoreId = model.StoreId,
                 ProductId = model.ProductId,
                 Quantity = model.Quantity
@@ -38,7 +37,7 @@ namespace FantasyStoreManager.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Inventories.Where( e => e.OwnerId == _userId && e.StoreId == storeId).Select(e => new InventoryListItem
+                var query = ctx.Inventories.Where( e => e.StoreId == storeId).Select(e => new InventoryListItem
                 {
                     InventoryId = e.InventoryID,
                     ProductId = e.Product.ProductId,
@@ -61,7 +60,7 @@ namespace FantasyStoreManager.Services
                     Name = e.Name,
                     Location = e.Location,
                     TypeOfStore = e.TypeofStore,
-                    UniqueProducts = GetStoreInventories(e.StoreId).Count()
+                    UniqueProducts = ctx.Inventories.Where(i => i.OwnerId == _userId && i.StoreId == e.StoreId).ToList().Count()
                 });
 
                 return query.ToArray();
