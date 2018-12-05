@@ -55,7 +55,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
 
             ModelState.AddModelError("", "Product could not be added.");
             //ViewBag.StoreId = new SelectList(service.Stores(), "StoreId", "Name", model.StoreId);
-            ViewBag.ProductId = new SelectList(service.Products(), "ProductId", "Name", model.ProductId);
+            ViewBag.ProductId = new SelectList(service.Products(), "ProductId", "Name");
 
             return View(model);
         }

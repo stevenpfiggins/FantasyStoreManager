@@ -21,7 +21,7 @@ namespace FantasyStoreManager.Services
         {
             var entity = new Inventory()
             {
-                InventoryID = model.InventoryID,
+                //InventoryID = model.InventoryID,
                 StoreId = id,
                 ProductId = model.ProductId,
                 Quantity = model.Quantity
@@ -85,7 +85,7 @@ namespace FantasyStoreManager.Services
             }
         }
 
-        public IEnumerable<Store> Stores()
+        public List<Store> Stores()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -93,7 +93,7 @@ namespace FantasyStoreManager.Services
             }
         }
 
-        public IEnumerable<Product> Products()
+        public List<Product> Products()
         {
             using (var ctx = new ApplicationDbContext())
             {
