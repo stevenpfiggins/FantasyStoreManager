@@ -33,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.UniqueProducts)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StoreId }) |
+            @Html.ActionLink("Add Inventory", "Create", new { id=item.StoreId }) |
             @Html.ActionLink("Details", "InventoryIndex", new { id=item.StoreId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.StoreId })
         </td>

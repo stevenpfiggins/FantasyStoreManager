@@ -22,10 +22,10 @@ namespace FantasyStoreManager.WebMVC.Controllers
         }
 
         //GET:
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var storeList = new SelectList(db.Stores.Where(s => s.OwnerId == userId).ToList() , "StoreId", "Name");
+            var storeList = new SelectList(db.Stores.Where(s => s.OwnerId == userId && s.StoreId == id).ToList() , "StoreId", "Name");
             ViewBag.StoreId = storeList;
             var productList = new SelectList(db.Products, "ProductId", "Name");
             ViewBag.ProductId = productList;
