@@ -34,8 +34,8 @@
         </td>
         <td>
             @Html.ActionLink("Add Inventory", "Create", new { id=item.StoreId }) |
-            @Html.ActionLink("Details", "InventoryIndex", new { id=item.StoreId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StoreId })
+            @Html.ActionLink("Inventory Details", "InventoryIndex", new { id=item.StoreId }) |
+            @Html.ActionLink("Store Details", "StoreDetail", new { id=item.StoreId })
         </td>
     </tr>
 }

@@ -55,6 +55,7 @@ namespace FantasyStoreManager.Data
         [Key]
         public int ProductId { get; set; }
         [Required]
+        [Display(Name = "Product Select")]
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }

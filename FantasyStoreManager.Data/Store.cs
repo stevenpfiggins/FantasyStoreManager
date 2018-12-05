@@ -33,6 +33,7 @@ namespace FantasyStoreManager.Data
         [Required]
         public Guid OwnerId { get; set; }
         [Required]
+        [Display(Name = "Store Name")]
         public string Name { get; set; }
         [Required]
         public string Location { get; set; }

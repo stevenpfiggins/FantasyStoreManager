@@ -1,6 +1,7 @@
 ﻿using FantasyStoreManager.Data;
 using FantasyStoreManager.Models;
 using FantasyStoreManager.Services;
+using FantasyStoreManager.WebMVC.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,19 @@ namespace FantasyStoreManager.WebMVC.Controllers
         }
 
         //GET:
-        public ActionResult Create(int id)
+        public ActionResult Create(int id, CreateInventoryPassStoreId model)
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var storeList = new SelectList(db.Stores.Where(s => s.OwnerId == userId && s.StoreId == id).ToList() , "StoreId", "Name");
-            ViewBag.StoreId = storeList;
-            var productList = new SelectList(db.Products, "ProductId", "Name");
+            var svc = CreateInventoryService();
+            var service = CreateStoreService();
+            var storeDetail = service.GetStoreById(id);
+            var viewModel = new CreateInventoryPassStoreId
+            {
+                StoreId = storeDetail.StoreId,
+                Name = storeDetail.Name
+            };
+            ViewBag.StoreId = viewModel;
+            var productList = new SelectList(svc.Products(), "ProductId", "Name");
             ViewBag.ProductId = productList;
             return View();
         }
@@ -35,19 +43,19 @@ namespace FantasyStoreManager.WebMVC.Controllers
         //POST:
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(InventoryCreate model)
+        public ActionResult Create(int id, InventoryCreate model)
         {
             if (!ModelState.IsValid) return View(model);
             var service = CreateInventoryService();
-            if (service.CreateInventory(model))
+            if (service.CreateInventory(id, model))
             {
                 TempData["SaveResult"] = "Products were added to your inventory.";
                 return RedirectToAction("Index");
             };
 
             ModelState.AddModelError("", "Product could not be added.");
-            ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "Name", model.StoreId);
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name", model.ProductId);
+            //ViewBag.StoreId = new SelectList(service.Stores(), "StoreId", "Name", model.StoreId);
+            ViewBag.ProductId = new SelectList(service.Products(), "ProductId", "Name", model.ProductId);
 
             return View(model);
         }
@@ -66,7 +74,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
             var model = svc.GetProductById(id);
             model.TypeOfProductString = PrivateEnumHelper(model.TypeOfProduct);
 
-            return View(model);
+            return RedirectToAction("Details", "Product");
         }
 
         private InventoryService CreateInventoryService()
@@ -76,13 +84,18 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return service;
         }
 
+        private StoreService CreateStoreService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new StoreService(userId);
+            return service;
+        }
+
         private string PrivateEnumHelper(ProductType productType)
         {
             var item = EnumHelper<ProductType>.GetDisplayValue(productType);
 
             return item;
         }
-
-        private ApplicationDbContext db = new ApplicationDbContext();
     }
 }

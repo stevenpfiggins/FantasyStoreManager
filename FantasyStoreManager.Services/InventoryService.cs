@@ -17,11 +17,12 @@ namespace FantasyStoreManager.Services
             _userId = userId;
         }
 
-        public bool CreateInventory(InventoryCreate model)
+        public bool CreateInventory(int id, InventoryCreate model)
         {
             var entity = new Inventory()
             {
-                StoreId = model.StoreId,
+                InventoryID = model.InventoryID,
+                StoreId = id,
                 ProductId = model.ProductId,
                 Quantity = model.Quantity
             };
@@ -81,6 +82,22 @@ namespace FantasyStoreManager.Services
                     Price = entity.Price,
                     IsMagical = entity.IsMagical
                 };
+            }
+        }
+
+        public IEnumerable<Store> Stores()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Stores.ToList();
+            }
+        }
+
+        public IEnumerable<Product> Products()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Products.ToList();
             }
         }
     }
