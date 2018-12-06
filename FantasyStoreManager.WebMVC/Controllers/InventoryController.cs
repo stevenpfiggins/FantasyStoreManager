@@ -23,7 +23,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
         }
 
         //GET:
-        public ActionResult Create(int id, CreateInventoryPassStoreId model)
+        public ActionResult Create(int id)
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var svc = CreateInventoryService();
@@ -54,9 +54,16 @@ namespace FantasyStoreManager.WebMVC.Controllers
             };
 
             ModelState.AddModelError("", "Product could not be added.");
-            //ViewBag.StoreId = new SelectList(service.Stores(), "StoreId", "Name", model.StoreId);
             ViewBag.ProductId = new SelectList(service.Products(), "ProductId", "Name");
 
+            return View(model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult ListStoreInventoryInCreate(int id)
+        {
+            var svc = CreateInventoryService();
+            IEnumerable<InventoryListItem> model = svc.GetStoreInventories(id);
             return View(model);
         }
 
@@ -68,13 +75,68 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return View(model);
         }
 
-        public ActionResult ProductDetails(int id)
+        public ActionResult InventoryDetails(int id)
         {
             var svc = CreateInventoryService();
-            var model = svc.GetProductById(id);
-            model.TypeOfProductString = PrivateEnumHelper(model.TypeOfProduct);
+            var model = svc.GetInventoryById(id);
 
             return RedirectToAction("Details", "Product");
+        }
+
+        //GET:
+        public ActionResult Edit(int id)
+        {
+            var service = CreateInventoryService();
+            var detail = service.GetInventoryById(id);
+            var model = new InventoryEdit
+            {
+                InventoryId = detail.InventoryId,
+                ProductId = detail.ProductId,
+                Quantity = detail.Quantity
+            };
+            return View(model);
+        }
+
+        //POST:
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, InventoryEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            if (model.InventoryId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+            var service = CreateInventoryService();
+            if (service.UpdateInventory(model))
+            {
+                TempData["SaveResult"] = $"Your inventory was updated.";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", $"Your inventory could not be updated.");
+            return View();
+        }
+
+        //GET:
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = CreateInventoryService();
+            var model = svc.GetInventoryById(id);
+            return View(model);
+        }
+
+        //DELETE:
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = CreateInventoryService();
+            service.DeleteInventory(id);
+            TempData["SaveResult"] = $"You ran out of inventory.";
+            return RedirectToAction("Index");
         }
 
         private InventoryService CreateInventoryService()

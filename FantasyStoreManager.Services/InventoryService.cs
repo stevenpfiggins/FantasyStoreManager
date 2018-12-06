@@ -21,7 +21,6 @@ namespace FantasyStoreManager.Services
         {
             var entity = new Inventory()
             {
-                //InventoryID = model.InventoryID,
                 StoreId = id,
                 ProductId = model.ProductId,
                 Quantity = model.Quantity
@@ -38,14 +37,19 @@ namespace FantasyStoreManager.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Inventories.Where( e => e.StoreId == storeId).Select(e => new InventoryListItem
-                {
-                    InventoryId = e.InventoryID,
-                    ProductId = e.Product.ProductId,
-                    Name = e.Product.Name,
-                    Description = e.Product.Description,
-                    Quantity = e.Quantity
-                });
+                var query =
+                    ctx
+                    .Inventories
+                    .Where(e => e.StoreId == storeId)
+                    .Select(e =>
+                    new InventoryListItem
+                    {
+                        InventoryId = e.InventoryID,
+                        ProductId = e.Product.ProductId,
+                        Name = e.Product.Name,
+                        Description = e.Product.Description,
+                        Quantity = e.Quantity
+                    });
 
                 return query.ToArray();
             }
@@ -82,6 +86,42 @@ namespace FantasyStoreManager.Services
                     Price = entity.Price,
                     IsMagical = entity.IsMagical
                 };
+            }
+        }
+
+        public InventoryDetail GetInventoryById(int inventoryId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Inventories.Single(e => e.InventoryID == inventoryId);
+                return new InventoryDetail
+                {
+                    InventoryId = entity.InventoryID,
+                    ProductId = entity.Product.ProductId,
+                    Quantity = entity.Quantity
+                };
+            }
+        }
+
+        public bool UpdateInventory(InventoryEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Inventories.Single(e => e.InventoryID == model.InventoryId);
+                entity.InventoryID = model.InventoryId;
+                entity.ProductId = model.ProductId;
+                entity.Quantity = model.Quantity;
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteInventory(int inventoryId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Inventories.Single(e => e.InventoryID == inventoryId);
+                ctx.Inventories.Remove(entity);
+                return ctx.SaveChanges() == 1;
             }
         }
 

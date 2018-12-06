@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InventoryCreate.cs" />
+    <Compile Include="InventoryDetail.cs" />
     <Compile Include="InventoryEdit.cs" />
     <Compile Include="InventoryListItem.cs" />
     <Compile Include="ProductCreate.cs" />
