@@ -125,6 +125,26 @@ namespace FantasyStoreManager.Services
             }
         }
 
+        public InventoryCreate CurrentInventory()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var model =
+                    new InventoryCreate
+                    {
+                        Inventories = ctx.Inventories.Select(e =>
+                        new InventoryListItem
+                        {
+                            InventoryId = e.InventoryID,
+                            ProductId = e.ProductId,
+                            Product = e.Product,
+                            Quantity = e.Quantity,
+                        }).ToList()
+                    };
+                return model;
+            }
+        }
+
         public List<Store> Stores()
         {
             using (var ctx = new ApplicationDbContext())

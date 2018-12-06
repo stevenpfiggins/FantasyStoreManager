@@ -6,6 +6,33 @@
 
 <h2>Create</h2>
 
+@if (Model.Inventories != null)
+{
+    <h3>Current Inventory</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Desicription</th>
+            <th>Quantity</th>
+        </tr>
+        @foreach(var inventory in Model.Inventories)
+        {
+            <tr>
+                <td></td>
+                <td>
+                    @inventory.Product.Name
+                </td>
+                <td>
+                    @inventory.Product.Description
+                </td>
+                <td>
+                    @inventory.Quantity
+                </td>
+            </tr>
+        }
+    </table>
+}
 
 @using (Html.BeginForm()) 
 {

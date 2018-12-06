@@ -21,6 +21,8 @@ namespace FantasyStoreManager.Models
 
         public int Quantity { get; set; }
 
+        public List<InventoryListItem> Inventories { get; set; }
+
         public virtual Store Store { get; set; }
         public virtual Product Product { get; set; }
     }

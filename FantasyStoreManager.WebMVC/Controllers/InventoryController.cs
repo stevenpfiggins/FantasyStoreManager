@@ -37,7 +37,8 @@ namespace FantasyStoreManager.WebMVC.Controllers
             ViewBag.StoreId = viewModel;
             var productList = new SelectList(svc.Products(), "ProductId", "Name");
             ViewBag.ProductId = productList;
-            return View();
+            var model = svc.CurrentInventory();
+            return View(model);
         }
 
         //POST:
