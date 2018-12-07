@@ -51,12 +51,13 @@ namespace FantasyStoreManager.WebMVC.Controllers
             var inventoryCheckList = service.Inventories();
             foreach (var inventory in inventoryCheckList)
             {
-                if (inventory.StoreId == model.StoreId && inventory.ProductId == model.ProductId)
+                if (inventory.StoreId == id && inventory.ProductId == model.ProductId)
                 {
                     TempData["SaveResult"] = "Product is already in inventory. Please edit current inventory.";
                     return RedirectToAction("Edit", new { id = inventory.InventoryID });
                 }
             }
+
             if (service.CreateInventory(id, model))
             {
                 TempData["SaveResult"] = "Products were added to your inventory.";

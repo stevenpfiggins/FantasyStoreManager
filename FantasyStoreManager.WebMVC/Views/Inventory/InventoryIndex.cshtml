@@ -4,8 +4,18 @@
     ViewBag.Title = "InventoryIndex";
 }
 
-<h2>InventoryIndex</h2>
+<h2>Store Inventory</h2>
 
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+        @ViewBag.SaveResult
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
 
 <table class="table">
     <tr>
@@ -21,23 +31,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.InventoryId }) |
-            @Html.ActionLink("Details", "Details", "Product", new { id=item.ProductId }, null) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.InventoryId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.InventoryId }) |
+                @Html.ActionLink("Details", "Details", "Product", new { id = item.ProductId }, null) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.InventoryId })
+            </td>
+        </tr>
+    }
 
 </table>

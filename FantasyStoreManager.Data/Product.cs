@@ -11,13 +11,17 @@ namespace FantasyStoreManager.Data
     public enum ProductType
     {
         [Display(Name ="Ammunition")]
-        Ammunition,
+        Ammunition = 1,
         [Display(Name ="Armor, Heavy")]
-        HeavyArmor = 1,
+        HeavyArmor,
         [Display(Name ="Armor, Light")]
         LightArmor,
         [Display(Name ="Armor, Medium")]
         MediumArmor,
+        [Display(Name ="Attire")]
+        Attire,
+        [Display(Name ="Food/Drink")]
+        FoodOrDrink,
         [Display(Name ="Good")]
         Good,
         [Display(Name ="Herb")]
@@ -34,6 +38,8 @@ namespace FantasyStoreManager.Data
         MartialRanged,
         [Display(Name ="Pack")]
         Pack,
+        [Display(Name ="Pet")]
+        Pet,
         [Display(Name ="Potion")]
         Potion,
         [Display(Name ="Shield")]
@@ -47,7 +53,9 @@ namespace FantasyStoreManager.Data
         [Display(Name ="Trinket")]
         Trinket,
         [Display(Name ="Vehicle")]
-        Vehicle
+        Vehicle,
+        [Display(Name ="Other")]
+        Other,
     }
 
     public class Product
