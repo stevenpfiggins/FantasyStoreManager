@@ -59,14 +59,18 @@ namespace FantasyStoreManager.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Stores.Where(e => e.OwnerId == _userId).Select(e => new StoreWithUniqueProductListItem
-                {
-                    StoreId = e.StoreId,
-                    Name = e.Name,
-                    Location = e.Location,
-                    TypeOfStore = e.TypeofStore,
-                    UniqueProducts = ctx.Inventories.Where(i => i.OwnerId == _userId && i.StoreId == e.StoreId).ToList().Count()
-                });
+                var query = ctx
+                    .Stores
+                    .Where(e => e.OwnerId == _userId)
+                    .Select(e =>
+                    new StoreWithUniqueProductListItem
+                    {
+                        StoreId = e.StoreId,
+                        Name = e.Name,
+                        Location = e.Location,
+                        TypeOfStore = e.TypeofStore,
+                        UniqueProducts = ctx.Inventories.Where(i => i.StoreId == e.StoreId).ToList().Count()
+                    });
 
                 return query.ToArray();
             }
@@ -76,7 +80,9 @@ namespace FantasyStoreManager.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Products.Single(e => e.ProductId == productId);
+                var entity = ctx
+                    .Products
+                    .Single(e => e.ProductId == productId);
                 return new ProductDetail
                 {
                     ProductId = entity.ProductId,
@@ -93,11 +99,14 @@ namespace FantasyStoreManager.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Inventories.Single(e => e.InventoryID == inventoryId);
+                var entity = ctx
+                    .Inventories
+                    .Single(e => e.InventoryID == inventoryId);
                 return new InventoryDetail
                 {
                     InventoryId = entity.InventoryID,
-                    ProductId = entity.Product.ProductId,
+                    ProductId = entity.ProductId,
+                    Name = entity.Product.Name,
                     Quantity = entity.Quantity
                 };
             }
@@ -107,7 +116,9 @@ namespace FantasyStoreManager.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Inventories.Single(e => e.InventoryID == model.InventoryId);
+                var entity = ctx
+                    .Inventories
+                    .Single(e => e.InventoryID == model.InventoryId);
                 entity.InventoryID = model.InventoryId;
                 entity.ProductId = model.ProductId;
                 entity.Quantity = model.Quantity;
@@ -119,20 +130,25 @@ namespace FantasyStoreManager.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Inventories.Single(e => e.InventoryID == inventoryId);
+                var entity = ctx
+                    .Inventories
+                    .Single(e => e.InventoryID == inventoryId);
                 ctx.Inventories.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public InventoryCreate CurrentInventory()
+        public InventoryCreate CurrentInventory(int storeId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var model =
                     new InventoryCreate
                     {
-                        Inventories = ctx.Inventories.Select(e =>
+                        Inventories = ctx
+                        .Inventories
+                        .Where(e => e.StoreId == storeId)
+                        .Select(e =>
                         new InventoryListItem
                         {
                             InventoryId = e.InventoryID,
@@ -158,6 +174,14 @@ namespace FantasyStoreManager.Services
             using (var ctx = new ApplicationDbContext())
             {
                 return ctx.Products.ToList();
+            }
+        }
+
+        public List<Inventory> Inventories()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Inventories.ToList();
             }
         }
     }

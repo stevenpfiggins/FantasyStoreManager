@@ -37,7 +37,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
             ViewBag.StoreId = viewModel;
             var productList = new SelectList(svc.Products(), "ProductId", "Name");
             ViewBag.ProductId = productList;
-            var model = svc.CurrentInventory();
+            var model = svc.CurrentInventory(id);
             return View(model);
         }
 
@@ -48,6 +48,15 @@ namespace FantasyStoreManager.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
             var service = CreateInventoryService();
+            var inventoryCheckList = service.Inventories();
+            foreach (var inventory in inventoryCheckList)
+            {
+                if (inventory.StoreId == model.StoreId && inventory.ProductId == model.ProductId)
+                {
+                    TempData["SaveResult"] = "Product is already in inventory. Please edit current inventory.";
+                    return RedirectToAction("Edit", new { id = inventory.InventoryID });
+                }
+            }
             if (service.CreateInventory(id, model))
             {
                 TempData["SaveResult"] = "Products were added to your inventory.";
@@ -57,14 +66,6 @@ namespace FantasyStoreManager.WebMVC.Controllers
             ModelState.AddModelError("", "Product could not be added.");
             ViewBag.ProductId = new SelectList(service.Products(), "ProductId", "Name");
 
-            return View(model);
-        }
-
-        [ChildActionOnly]
-        public ActionResult ListStoreInventoryInCreate(int id)
-        {
-            var svc = CreateInventoryService();
-            IEnumerable<InventoryListItem> model = svc.GetStoreInventories(id);
             return View(model);
         }
 
@@ -93,8 +94,9 @@ namespace FantasyStoreManager.WebMVC.Controllers
             {
                 InventoryId = detail.InventoryId,
                 ProductId = detail.ProductId,
+                Name = detail.Name,
                 Quantity = detail.Quantity
-            };
+            };       
             return View(model);
         }
 
@@ -112,10 +114,10 @@ namespace FantasyStoreManager.WebMVC.Controllers
             var service = CreateInventoryService();
             if (service.UpdateInventory(model))
             {
-                TempData["SaveResult"] = $"Your inventory was updated.";
+                TempData["SaveResult"] = "Your inventory was updated.";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", $"Your inventory could not be updated.");
+            ModelState.AddModelError("", "Your inventory could not be updated.");
             return View();
         }
 
@@ -136,7 +138,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
         {
             var service = CreateInventoryService();
             service.DeleteInventory(id);
-            TempData["SaveResult"] = $"You ran out of inventory.";
+            TempData["SaveResult"] = "You ran out of inventory.";
             return RedirectToAction("Index");
         }
 

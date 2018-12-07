@@ -19,6 +19,7 @@ namespace FantasyStoreManager.Models
         [Display(Name = "Store Type")]
         public StoreType TypeOfStore { get; set; }
 
+        [Display(Name = "Unique Products")]
         public int UniqueProducts { get; set; }
     }
 }
