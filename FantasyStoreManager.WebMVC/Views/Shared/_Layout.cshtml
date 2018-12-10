@@ -24,11 +24,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("My Stores", "Index", "Store")</li>
-                        <li>@Html.ActionLink("My Products", "Index", "Product")</li>
-                        <li>@Html.ActionLink("My Inventories", "Index", "Inventory")</li>
+                        <li>@Html.ActionLink("Stores", "Index", "Store")</li>
+                        <li>@Html.ActionLink("Products", "Index", "Product")</li>
+                        <li>@Html.ActionLink("Inventories", "Index", "Inventory")</li>
                     }
-                    <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 

@@ -103,7 +103,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
         {
             var service = CreateStoreService();
             service.DeleteStore(id);
-            TempData["SaveResult"] = "Your store was destroyed by murderhobos.";
+            TempData["SaveResult"] = "Your store has been demolished.";
             return RedirectToAction("Index");
         }
 

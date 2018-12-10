@@ -78,14 +78,6 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return View(model);
         }
 
-        public ActionResult InventoryDetails(int id)
-        {
-            var svc = CreateInventoryService();
-            var model = svc.GetInventoryById(id);
-
-            return RedirectToAction("Details", "Product");
-        }
-
         //GET:
         public ActionResult Edit(int id)
         {
@@ -139,7 +131,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
         {
             var service = CreateInventoryService();
             service.DeleteInventory(id);
-            TempData["SaveResult"] = "You ran out of inventory.";
+            TempData["SaveResult"] = "Your inventory has been removed.";
             return RedirectToAction("Index");
         }
 

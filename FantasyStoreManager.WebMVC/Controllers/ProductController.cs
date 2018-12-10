@@ -114,7 +114,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
         {
             var service = CreateProductService();
             service.DeleteProduct(id);
-            TempData["SaveResult"] = $"Your item was stolen by brigands.";
+            TempData["SaveResult"] = $"Your item was destroyed.";
             return RedirectToAction("Index");
         }
 

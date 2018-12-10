@@ -46,7 +46,7 @@
             <td>
                 @Html.ActionLink("Add Inventory", "Create", new { id = item.StoreId }) |
                 @Html.ActionLink("Inventory Details", "InventoryIndex", new { id = item.StoreId }) |
-                @Html.ActionLink("Store Details", "StoreDetail", new { id = item.StoreId })
+                @Html.ActionLink("Store Details", "Details", "Store", new { id = item.StoreId }, null)
             </td>
         </tr>
     }
