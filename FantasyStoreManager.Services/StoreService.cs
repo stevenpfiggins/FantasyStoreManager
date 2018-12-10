@@ -34,7 +34,7 @@ namespace FantasyStoreManager.Services
             }
         }
 
-        public IEnumerable<StoreListItem> GetStores()
+        public IEnumerable<StoreListItem> GetStores(string sortOrder)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -45,8 +45,31 @@ namespace FantasyStoreManager.Services
                     Location = e.Location,
                     TypeOfStore = e.TypeofStore
                 });
+                var stores = from s in query
+                             select s;
+                switch (sortOrder)
+                {
+                    case "storeName_desc":
+                        stores = stores.OrderByDescending(s => s.Name);
+                        break;
+                    case "Location":
+                        stores = stores.OrderBy(s => s.Location);
+                        break;
+                    case "location_desc":
+                        stores = stores.OrderByDescending(s => s.Location);
+                        break;
+                    case "StoreType":
+                        stores = stores.OrderBy(s => s.TypeOfStore);
+                        break;
+                    case "storeType_desc":
+                        stores = stores.OrderByDescending(s => s.TypeOfStore);
+                        break;
+                    default:
+                        stores = stores.OrderBy(s => s.Name);
+                        break;
+                }
 
-                return query.ToArray();
+                return stores.ToArray();
             }
         }
 
@@ -84,6 +107,14 @@ namespace FantasyStoreManager.Services
                 var entity = ctx.Stores.Single(e => e.StoreId == storeId && e.OwnerId == _userId);
                 ctx.Stores.Remove(entity);
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public List<Store> Stores()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Stores.ToList();
             }
         }
     }

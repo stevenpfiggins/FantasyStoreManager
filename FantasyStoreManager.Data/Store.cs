@@ -15,10 +15,10 @@ namespace FantasyStoreManager.Data
         General,
         [Display(Name = "Magic")]
         Magic,
-        [Display(Name = "Stablery")]
-        Stablery,
         [Display(Name = "Smithy")]
         Smithy,
+        [Display(Name = "Stablery")]
+        Stablery,
         [Display(Name = "Tannery")]
         Tannery,
         [Display(Name = "Tavern")]

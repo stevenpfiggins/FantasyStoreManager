@@ -20,13 +20,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Product Name", "InventoryIndex", new { sortOrder = ViewBag.ProductNameSort })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Quantity)
+            @Html.ActionLink("Quantity", "InventoryIndex", new { sortOrder = ViewBag.QuantitySort })
         </th>
         <th></th>
     </tr>

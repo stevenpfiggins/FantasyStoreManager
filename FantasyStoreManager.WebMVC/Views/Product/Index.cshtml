@@ -23,16 +23,16 @@
         <th>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.ProductNameSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TypeOfProduct)
+            @Html.ActionLink("Product Type", "Index", new { sortOrder = ViewBag.ProductTypeSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            Price
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsMagical)
+            @Html.ActionLink("Magical/Non-Magical", "Index", new { sortOrder = ViewBag.MagicSort })
         </th>
         <th></th>
     </tr>

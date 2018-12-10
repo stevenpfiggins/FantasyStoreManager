@@ -13,12 +13,15 @@ namespace FantasyStoreManager.WebMVC.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
             var service = CreateProductService();
-            var model = service.GetProducts();
+            var model = service.GetProducts(sortOrder);
+            ViewBag.ProductNameSort = String.IsNullOrEmpty(sortOrder) ? "productName_desc" : "";
+            ViewBag.ProductTypeSort = sortOrder == "ProductType" ? "productType_desc" : "ProductType";
+            ViewBag.MagicSort = sortOrder == "Magic" ? "non_magic" : "Magic";
 
-            foreach(var item  in model)
+            foreach (var item  in model)
             {
                 item.TypeOfProductString = PrivateEnumHelper(item.TypeOfProduct);
             }

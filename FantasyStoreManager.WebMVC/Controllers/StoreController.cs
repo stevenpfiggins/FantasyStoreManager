@@ -13,10 +13,13 @@ namespace FantasyStoreManager.WebMVC.Controllers
     public class StoreController : Controller
     {
         // GET: Store
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
             var service = CreateStoreService();
-            var model = service.GetStores();
+            ViewBag.StoreNameSort = String.IsNullOrEmpty(sortOrder) ? "storeName_desc" : "";
+            ViewBag.LocationNameSort = sortOrder == "Location" ? "location_desc" : "Location";
+            ViewBag.StoreTypeSort = sortOrder == "StoreType" ? "storeType_desc" : "StoreType";
+            var model = service.GetStores(sortOrder);
             return View(model);
         }
 

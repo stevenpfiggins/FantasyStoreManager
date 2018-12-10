@@ -33,7 +33,7 @@ namespace FantasyStoreManager.Services
             }
         }
 
-        public IEnumerable<InventoryListItem> GetStoreInventories(int storeId)
+        public IEnumerable<InventoryListItem> GetStoreInventories(int storeId, string sortOrder)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -50,12 +50,28 @@ namespace FantasyStoreManager.Services
                         Description = e.Product.Description,
                         Quantity = e.Quantity
                     });
-
-                return query.ToArray();
+                var stores = from s in query
+                             select s;
+                switch (sortOrder)
+                {
+                    case "productName_desc":
+                        stores = stores.OrderByDescending(s => s.Name);
+                        break;
+                    case "Quantity":
+                        stores = stores.OrderBy(s => s.Quantity);
+                        break;
+                    case "quantity_desc":
+                        stores = stores.OrderByDescending(s => s.Quantity);
+                        break;
+                    default:
+                        stores = stores.OrderBy(s => s.Name);
+                        break;
+                }
+                return stores.ToArray();
             }
         }
 
-        public IEnumerable<StoreWithUniqueProductListItem> GetStores()
+        public IEnumerable<StoreWithUniqueProductListItem> GetStores(string sortOrder)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -71,8 +87,30 @@ namespace FantasyStoreManager.Services
                         TypeOfStore = e.TypeofStore,
                         UniqueProducts = ctx.Inventories.Where(i => i.StoreId == e.StoreId).ToList().Count()
                     });
-
-                return query.ToArray();
+                var stores = from s in query
+                             select s;
+                switch (sortOrder)
+                {
+                    case "storeName_desc":
+                        stores = stores.OrderByDescending(s => s.Name);
+                        break;
+                    case "Location":
+                        stores = stores.OrderBy(s => s.Location);
+                        break;
+                    case "location_desc":
+                        stores = stores.OrderByDescending(s => s.Location);
+                        break;
+                    case "Count":
+                        stores = stores.OrderBy(s => s.UniqueProducts);
+                        break;
+                    case "count_desc":
+                        stores = stores.OrderByDescending(s => s.UniqueProducts);
+                        break;
+                    default:
+                        stores = stores.OrderBy(s => s.Name);
+                        break;
+                }
+                return stores.ToArray();
             }
         }
 

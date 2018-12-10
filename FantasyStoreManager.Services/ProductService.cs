@@ -38,7 +38,7 @@ namespace FantasyStoreManager.Services
             }
         }
 
-        public IEnumerable<ProductListItem> GetProducts()
+        public IEnumerable<ProductListItem> GetProducts(string sortOrder)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -50,7 +50,36 @@ namespace FantasyStoreManager.Services
                     TypeOfProduct = e.TypeOfProduct,
                     IsMagical = e.IsMagical
                 });
-                return query.ToArray();
+                var products = from p in query
+                             select p;
+                switch (sortOrder)
+                {
+                    case "productName_desc":
+                        products = products.OrderByDescending(p => p.Name);
+                        break;
+                    case "Price":
+                        products = products.OrderBy(p => p.Price);
+                        break;
+                    case "price_desc":
+                        products = products.OrderByDescending(p => p.Price);
+                        break;
+                    case "ProductType":
+                        products = products.OrderBy(p => p.TypeOfProduct);
+                        break;
+                    case "productType_desc":
+                        products = products.OrderByDescending(p => p.TypeOfProduct);
+                        break;
+                    case "Magic":
+                        products = products.OrderBy(p => p.IsMagical);
+                        break;
+                    case "non_magic":
+                        products = products.OrderByDescending(p => p.IsMagical);
+                        break;
+                    default:
+                        products = products.OrderBy(p => p.Name);
+                        break;
+                }
+                return products.ToArray();
             }
         }
 

@@ -23,13 +23,13 @@
     <tr>
         <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Store Name", "Index", new { sortOrder = ViewBag.StoreNameSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationNameSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TypeOfStore)
+            @Html.ActionLink("Store Type", "Index", new { sortOrder = ViewBag.StoreTypeSort })
         </th>
         <th></th>
     </tr>

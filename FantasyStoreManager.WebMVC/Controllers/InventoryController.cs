@@ -14,10 +14,13 @@ namespace FantasyStoreManager.WebMVC.Controllers
     public class InventoryController : Controller
     {
         // GET: Inventory
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
             var service = CreateInventoryService();
-            var model = service.GetStores();
+            var model = service.GetStores(sortOrder);
+            ViewBag.StoreNameSort = String.IsNullOrEmpty(sortOrder) ? "storeName_desc" : "";
+            ViewBag.LocationNameSort = sortOrder == "Location" ? "location_desc" : "Location";
+            ViewBag.CountSort = sortOrder == "Count" ? "count_desc" : "Count";
 
             return View(model);
         }
@@ -70,10 +73,12 @@ namespace FantasyStoreManager.WebMVC.Controllers
             return View(model);
         }
 
-        public ActionResult InventoryIndex(int id)
+        public ActionResult InventoryIndex(int id, string sortOrder)
         {
             var svc = CreateInventoryService();
-            var model = svc.GetStoreInventories(id);
+            var model = svc.GetStoreInventories(id, sortOrder);
+            ViewBag.ProductNameSort = String.IsNullOrEmpty(sortOrder) ? "productName_desc" : "";
+            ViewBag.QuantitySort = sortOrder == "Quantity" ? "quantity_desc" : "Quantity";
 
             return View(model);
         }
