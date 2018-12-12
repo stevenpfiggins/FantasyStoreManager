@@ -1,6 +1,38 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #eaf2ff;
+}
+
+#homepage {
+    background: url("Assets/road-town-paved-old-town.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.jumbotron {
+    background: url(Assets/sign-post-576727_960_720.png) no-repeat center;
+    background-size: 900px;
+}
+
+.mylogo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50%;
+    width: 50%;
+    margin-bottom: 15%;
+}
+
+li {
+    font-family: 'Metamorphous', cursive;
+}
+
+h2 {
+    font-family: 'Uncial Antiqua', cursive;
+}
+
+.thumbnail {
+    background-color: lightgray;
 }
 
 /* Set padding to keep content from hitting the edges */
