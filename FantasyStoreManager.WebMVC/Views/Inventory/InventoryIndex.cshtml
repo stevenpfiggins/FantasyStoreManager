@@ -4,7 +4,9 @@
     ViewBag.Title = "InventoryIndex";
 }
 
-<h2>Store Inventory</h2>
+<div class="inventoryHeader">
+    <h2 id="inventoryHeaderSize">Store Inventory</h2>
+</div>
 
 @if (TempData.ContainsKey("SaveResult"))
 {

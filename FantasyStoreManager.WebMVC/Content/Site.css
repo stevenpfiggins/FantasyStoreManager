@@ -4,31 +4,97 @@
     background-color: #eaf2ff;
 }
 
-#homepage {
-    background: url("Assets/road-town-paved-old-town.jpg") no-repeat center;
-    background-size: cover;
-}
-
 .jumbotron {
-    background: url(Assets/sign-post-576727_960_720.png) no-repeat center;
-    background-size: 900px;
-}
-
-.mylogo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 50%;
-    width: 50%;
-    margin-bottom: 15%;
+    background-color: transparent;
 }
 
 li {
     font-family: 'Metamorphous', cursive;
 }
 
-h2 {
-    font-family: 'Uncial Antiqua', cursive;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Metamorphous', cursive;
+}
+
+th, td, dt, dd, p, .form-group, address {
+    font-family: 'Cuprum', sans-serif;
+    font-size: large;
+}
+
+#copyright {
+    color: darkgrey;
+}
+
+#homepage {
+    background: url("Assets/road-town-paved-old-town.jpg") no-repeat center;
+    background-size: cover;
+}
+
+#mylogo {
+    content: "";
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2;
+    animation: swing 7.0s infinite alternate ease-in-out;
+    transform-origin: top;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(5deg);
+    }
+}
+
+.productHeader {
+    background: url("Assets/pexels-photo-208674.jpeg") no-repeat center;
+    background-size: cover;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 2% 2% 2% 2%;
+    border-radius: 5% 5%;
+    margin-bottom: 5%;
+    
+}
+
+#productHeaderSize {
+    font-size: 800%;
+}
+
+.storeHeader {
+    background: url("Assets/craft-monochrome-old-162631.jpg") no-repeat center;
+    background-size: cover;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 2% 2% 2% 2%;
+    border-radius: 5% 5%;
+    margin-bottom: 5%;
+}
+
+#storeHeaderSize {
+    font-size: 800%;
+}
+
+.inventoryHeader {
+    background: url("Assets/alcohol-barrel-basement-434311.jpg") no-repeat center;
+    background-size: cover;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 2% 2% 2% 2%;
+    border-radius: 5% 5%;
+    margin-bottom: 5%;
+}
+
+#inventoryHeaderSize {
+    font-size: 800%;
 }
 
 .thumbnail {

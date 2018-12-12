@@ -4,7 +4,9 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Destroy an Item</h2>
+<div class="productHeader">
+    <h2 id="productHeaderSize">Destroy</h2>
+</div>
 
 <h3>Are you sure you want to destroy this?</h3>
 <div>
@@ -70,7 +72,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
