@@ -5,92 +5,94 @@
 <div class="productHeader">
     <h2 id="productHeaderSize">Products</h2>
 </div>
-<p>
-    @Html.ActionLink("Craft a Product", "Create")
-    <span class="glyphicon glyphicon-tag"></span>
-</p>
-@if (TempData.ContainsKey("SaveResult"))
-{
-    <div class="alert alert-success fade in" role="alert">
-        @ViewBag.SaveResult
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-        @TempData["SaveResult"]
-    </div>
-}
-<table class="table">
-    <tr>
-        <th>
-        </th>
-        <th>
-            @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.ProductNameSort })
-            @if (ViewBag.ProductNameSort == "productName_desc" && ViewBag.CurrentSortOrder == "name")
-            {
-                <i class="glyphicon @(ViewBag.ProductNameSort == "productName_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
-            }
-            else if (ViewBag.ProductNameSort == "" && ViewBag.CurrentSortOrder == "name")
-            {
-                <i class="glyphicon @(ViewBag.ProductNameSort == "" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
-            }
-        </th>
-        <th>
-            @Html.ActionLink("Product Type", "Index", new { sortOrder = ViewBag.ProductTypeSort })
-            @if (ViewBag.ProductTypeSort == "productType_desc" && ViewBag.CurrentSortOrder == "type")
-            {
-                <i class="glyphicon @(ViewBag.ProductTypeSort == "productType_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
-            }
-            else if (ViewBag.ProductTypeSort == "ProductType" && ViewBag.CurrentSortOrder == "type")
-            {
-                <i class="glyphicon @(ViewBag.ProductTypeSort == "ProductType" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
-            }
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            @Html.ActionLink("Magical/Non-Magical", "Index", new { sortOrder = ViewBag.MagicSort })
-            @if (ViewBag.MagicSort == "non_magic" && ViewBag.CurrentSortOrder == "magic")
-            {
-                <i class="glyphicon @(ViewBag.MagicSort == "non-magic" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
-            }
-            else if (ViewBag.MagicSort == "Magic" && ViewBag.CurrentSortOrder == "magic")
-            {
-                <i class="glyphicon @(ViewBag.MagicSort == "Magic" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
-            }
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+<div class="table-surround">
+    <p>
+        @Html.ActionLink("Craft a Product", "Create")
+        <span class="glyphicon glyphicon-tag"></span>
+    </p>
+    @if (TempData.ContainsKey("SaveResult"))
     {
-        <tr>
-            <td>
-                @Html.HiddenFor(modelItem => item.ProductId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeOfProductString)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            @if (item.IsMagical == true)
-            {
-                <td>Magical</td>
-            }
-            else
-            {
-                <td>Non-Magical</td>
-            }
-            <td>
-                @Html.ActionLink("Repair", "Edit", new { id = item.ProductId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-                @Html.ActionLink("Destroy", "Delete", new { id = item.ProductId })
-            </td>
-        </tr>
+        <div class="alert alert-success fade in" role="alert">
+            @ViewBag.SaveResult
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            @TempData["SaveResult"]
+        </div>
     }
+    <table class="table">
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.ProductNameSort })
+                @if (ViewBag.ProductNameSort == "productName_desc" && ViewBag.CurrentSortOrder == "name")
+                {
+                    <i class="glyphicon @(ViewBag.ProductNameSort == "productName_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+                }
+                else if (ViewBag.ProductNameSort == "" && ViewBag.CurrentSortOrder == "name")
+                {
+                    <i class="glyphicon @(ViewBag.ProductNameSort == "" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+                }
+            </th>
+            <th>
+                @Html.ActionLink("Product Type", "Index", new { sortOrder = ViewBag.ProductTypeSort })
+                @if (ViewBag.ProductTypeSort == "productType_desc" && ViewBag.CurrentSortOrder == "type")
+                {
+                    <i class="glyphicon @(ViewBag.ProductTypeSort == "productType_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+                }
+                else if (ViewBag.ProductTypeSort == "ProductType" && ViewBag.CurrentSortOrder == "type")
+                {
+                    <i class="glyphicon @(ViewBag.ProductTypeSort == "ProductType" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+                }
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                @Html.ActionLink("Magical/Non-Magical", "Index", new { sortOrder = ViewBag.MagicSort })
+                @if (ViewBag.MagicSort == "non_magic" && ViewBag.CurrentSortOrder == "magic")
+                {
+                    <i class="glyphicon @(ViewBag.MagicSort == "non-magic" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+                }
+                else if (ViewBag.MagicSort == "Magic" && ViewBag.CurrentSortOrder == "magic")
+                {
+                    <i class="glyphicon @(ViewBag.MagicSort == "Magic" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+                }
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeOfProductString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                @if (item.IsMagical == true)
+                {
+                    <td>Magical</td>
+                }
+                else
+                {
+                    <td>Non-Magical</td>
+                }
+                <td>
+                    @Html.ActionLink("Repair", "Edit", new { id = item.ProductId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                    @Html.ActionLink("Destroy", "Delete", new { id = item.ProductId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

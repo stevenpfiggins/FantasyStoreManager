@@ -1,11 +1,20 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #eaf2ff;
+    background: url("Assets/road-town-paved-old-town.jpg") no-repeat center;
+    background-size: cover;
 }
 
 .jumbotron {
     background-color: transparent;
+}
+
+.table-surround {
+    border: 2px solid black;
+    border-radius: 5%;
+    background-color: #e6eced;
+    padding: 5%;
+    margin-top: 2.5%;
 }
 
 li {
@@ -63,7 +72,7 @@ th, td, dt, dd, p, .form-group, address {
     color: white;
     padding: 2% 2% 2% 2%;
     border-radius: 5% 5%;
-    margin-bottom: 5%;
+    margin-top: 1%;
     
 }
 
@@ -79,7 +88,7 @@ th, td, dt, dd, p, .form-group, address {
     color: white;
     padding: 2% 2% 2% 2%;
     border-radius: 5% 5%;
-    margin-bottom: 5%;
+    margin-top: 1%;
 }
 
 #storeHeaderSize {
@@ -94,7 +103,7 @@ th, td, dt, dd, p, .form-group, address {
     color: white;
     padding: 2% 2% 2% 2%;
     border-radius: 5% 5%;
-    margin-bottom: 5%;
+    margin-top: 1%;
 }
 
 #inventoryHeaderSize {

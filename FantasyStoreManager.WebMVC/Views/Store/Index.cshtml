@@ -8,80 +8,82 @@
     <h2 id="storeHeaderSize">Stores</h2>
 </div>
 
-<p>
-    @Html.ActionLink("Build a Store", "Create")
-    <span class="glyphicon glyphicon-home"></span>
-</p>
-@if (TempData.ContainsKey("SaveResult"))
-{
-    <div class="alert alert-success fade in" role="alert">
-        @ViewBag.SaveResult
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-        @TempData["SaveResult"]
-    </div>
-}
-<table class="table">
-    <tr>
-        <th></th>
-        <th>
-            @Html.ActionLink("Store Name", "Index", new { sortOrder = ViewBag.StoreNameSort })
-            @if (ViewBag.StoreNameSort == "storeName_desc" && ViewBag.CurrentSortOrder == "name")
-            {
-                <i class="glyphicon @(ViewBag.StoreNameSort == "storeName_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
-            }
-            else if (ViewBag.StoreNameSort == "" && ViewBag.CurrentSortOrder == "name")
-            {
-                <i class="glyphicon @(ViewBag.StoreNameSort == "" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
-            }
-        </th>
-        <th>
-            @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationNameSort })
-            @if (ViewBag.LocationNameSort == "location_desc" && ViewBag.CurrentSortOrder == "location")
-            {
-                <i class="glyphicon @(ViewBag.LocationNameSort == "location_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
-            }
-            else if (ViewBag.LocationNameSort == "Location" && ViewBag.CurrentSortOrder == "location")
-            {
-                <i class="glyphicon @(ViewBag.LocationNameSort == "Location" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
-            }
-        </th>
-        <th>
-            @Html.ActionLink("Store Type", "Index", new { sortOrder = ViewBag.StoreTypeSort })
-            @if (ViewBag.StoreTypeSort == "storeType_desc" && ViewBag.CurrentSortOrder == "store")
-            {
-                <i class="glyphicon @(ViewBag.StoreTypeSort == "storeType_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
-            }
-            else if (ViewBag.StoreTypeSort == "StoreType" && ViewBag.CurrentSortOrder == "store")
-            {
-                <i class="glyphicon @(ViewBag.StoreTypeSort == "StoreType" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
-            }
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+<div class="table-surround">
+    <p>
+        @Html.ActionLink("Build a Store", "Create")
+        <span class="glyphicon glyphicon-home"></span>
+    </p>
+    @if (TempData.ContainsKey("SaveResult"))
     {
-        <tr>
-            <td>
-                @Html.HiddenFor(modelItem => item.StoreId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeOfStore)
-            </td>
-            <td>
-                @Html.ActionLink("Refurbish", "Edit", new { id = item.StoreId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.StoreId }) |
-                @Html.ActionLink("Demolish", "Delete", new { id = item.StoreId })
-            </td>
-        </tr>
+        <div class="alert alert-success fade in" role="alert">
+            @ViewBag.SaveResult
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            @TempData["SaveResult"]
+        </div>
     }
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>
+                @Html.ActionLink("Store Name", "Index", new { sortOrder = ViewBag.StoreNameSort })
+                @if (ViewBag.StoreNameSort == "storeName_desc" && ViewBag.CurrentSortOrder == "name")
+                {
+                    <i class="glyphicon @(ViewBag.StoreNameSort == "storeName_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+                }
+                else if (ViewBag.StoreNameSort == "" && ViewBag.CurrentSortOrder == "name")
+                {
+                    <i class="glyphicon @(ViewBag.StoreNameSort == "" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+                }
+            </th>
+            <th>
+                @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationNameSort })
+                @if (ViewBag.LocationNameSort == "location_desc" && ViewBag.CurrentSortOrder == "location")
+                {
+                    <i class="glyphicon @(ViewBag.LocationNameSort == "location_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+                }
+                else if (ViewBag.LocationNameSort == "Location" && ViewBag.CurrentSortOrder == "location")
+                {
+                    <i class="glyphicon @(ViewBag.LocationNameSort == "Location" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+                }
+            </th>
+            <th>
+                @Html.ActionLink("Store Type", "Index", new { sortOrder = ViewBag.StoreTypeSort })
+                @if (ViewBag.StoreTypeSort == "storeType_desc" && ViewBag.CurrentSortOrder == "store")
+                {
+                    <i class="glyphicon @(ViewBag.StoreTypeSort == "storeType_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+                }
+                else if (ViewBag.StoreTypeSort == "StoreType" && ViewBag.CurrentSortOrder == "store")
+                {
+                    <i class="glyphicon @(ViewBag.StoreTypeSort == "StoreType" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+                }
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.StoreId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeOfStore)
+                </td>
+                <td>
+                    @Html.ActionLink("Refurbish", "Edit", new { id = item.StoreId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.StoreId }) |
+                    @Html.ActionLink("Demolish", "Delete", new { id = item.StoreId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
