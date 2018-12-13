@@ -19,6 +19,26 @@ namespace FantasyStoreManager.WebMVC.Controllers
             ViewBag.StoreNameSort = String.IsNullOrEmpty(sortOrder) ? "storeName_desc" : "";
             ViewBag.LocationNameSort = sortOrder == "Location" ? "location_desc" : "Location";
             ViewBag.StoreTypeSort = sortOrder == "StoreType" ? "storeType_desc" : "StoreType";
+
+            string sortType = "";
+            switch (sortOrder)
+            {
+                default:
+                case "storeName_desc":
+                    sortType = "name";
+                    break;
+
+                case "Location":
+                case "location_desc":
+                    sortType = "location";
+                    break;
+
+                case "StoreType":
+                case "storeType_desc":
+                    sortType = "store";
+                    break;
+            }
+            ViewBag.CurrentSortOrder = sortType;
             var model = service.GetStores(sortOrder);
             return View(model);
         }

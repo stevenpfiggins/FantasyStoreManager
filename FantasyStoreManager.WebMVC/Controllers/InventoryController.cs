@@ -22,6 +22,26 @@ namespace FantasyStoreManager.WebMVC.Controllers
             ViewBag.LocationNameSort = sortOrder == "Location" ? "location_desc" : "Location";
             ViewBag.CountSort = sortOrder == "Count" ? "count_desc" : "Count";
 
+            string sortType = "";
+            switch (sortOrder)
+            {
+                default:
+                case "storeName_desc":
+                    sortType = "name";
+                    break;
+
+                case "Location":
+                case "location_desc":
+                    sortType = "location";
+                    break;
+
+                case "Count":
+                case "count_desc":
+                    sortType = "count";
+                    break;
+            }
+            ViewBag.CurrentSortOrder = sortType;
+
             return View(model);
         }
 
@@ -79,6 +99,21 @@ namespace FantasyStoreManager.WebMVC.Controllers
             var model = svc.GetStoreInventories(id, sortOrder);
             ViewBag.ProductNameSort = String.IsNullOrEmpty(sortOrder) ? "productName_desc" : "";
             ViewBag.QuantitySort = sortOrder == "Quantity" ? "quantity_desc" : "Quantity";
+
+            string sortType = "";
+            switch (sortOrder)
+            {
+                default:
+                case "productName_desc":
+                    sortType = "name";
+                    break;
+
+                case "Quantity":
+                case "quantity_desc":
+                    sortType = "quantity";
+                    break;
+            }
+            ViewBag.CurrentSortOrder = sortType;
 
             return View(model);
         }

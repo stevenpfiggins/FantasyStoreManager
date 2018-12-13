@@ -10,6 +10,7 @@
 
 <p>
     @Html.ActionLink("Build a Store", "Create")
+    <span class="glyphicon glyphicon-home"></span>
 </p>
 @if (TempData.ContainsKey("SaveResult"))
 {
@@ -26,33 +27,36 @@
         <th></th>
         <th>
             @Html.ActionLink("Store Name", "Index", new { sortOrder = ViewBag.StoreNameSort })
-            @if (ViewBag.StoreNameSort == "storeName_desc")
+            @if (ViewBag.StoreNameSort == "storeName_desc" && ViewBag.CurrentSortOrder == "name")
             {
                 <i class="glyphicon @(ViewBag.StoreNameSort == "storeName_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
             }
-            else if (ViewBag.StoreNameSort == "")
+            else if (ViewBag.StoreNameSort == "" && ViewBag.CurrentSortOrder == "name")
             {
                 <i class="glyphicon @(ViewBag.StoreNameSort == "" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
-            }
-            else
-            {
-                <i class="glyphicon @(ViewBag.StoreNameSort == "storeName_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")" aria-hidden="true"></i>
             }
         </th>
         <th>
             @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationNameSort })
-            @if (ViewBag.LocationNameSort == "location_desc")
+            @if (ViewBag.LocationNameSort == "location_desc" && ViewBag.CurrentSortOrder == "location")
             {
                 <i class="glyphicon @(ViewBag.LocationNameSort == "location_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
             }
-            else if (ViewBag.LocationNameSort == "Location")
+            else if (ViewBag.LocationNameSort == "Location" && ViewBag.CurrentSortOrder == "location")
             {
                 <i class="glyphicon @(ViewBag.LocationNameSort == "Location" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
             }
         </th>
         <th>
             @Html.ActionLink("Store Type", "Index", new { sortOrder = ViewBag.StoreTypeSort })
-            <i class="glyphicon @(ViewBag.StoreTypeSort == "storeType_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+            @if (ViewBag.StoreTypeSort == "storeType_desc" && ViewBag.CurrentSortOrder == "store")
+            {
+                <i class="glyphicon @(ViewBag.StoreTypeSort == "storeType_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+            }
+            else if (ViewBag.StoreTypeSort == "StoreType" && ViewBag.CurrentSortOrder == "store")
+            {
+                <i class="glyphicon @(ViewBag.StoreTypeSort == "StoreType" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+            }
         </th>
         <th></th>
     </tr>

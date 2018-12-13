@@ -23,12 +23,36 @@
     <tr>
         <th>
             @Html.ActionLink("Store Name", "Index", new { sortOrder = ViewBag.StoreNameSort })
+            @if (ViewBag.StoreNameSort == "storeName_desc" && ViewBag.CurrentSortOrder == "name")
+            {
+                <i class="glyphicon @(ViewBag.StoreNameSort == "storeName_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+            }
+            else if (ViewBag.StoreNameSort == "" && ViewBag.CurrentSortOrder == "name")
+            {
+                <i class="glyphicon @(ViewBag.StoreNameSort == "" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+            }
         </th>
         <th>
             @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationNameSort })
+            @if (ViewBag.LocationNameSort == "location_desc" && ViewBag.CurrentSortOrder == "location")
+            {
+                <i class="glyphicon @(ViewBag.LocationNameSort == "location_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+            }
+            else if (ViewBag.LocationNameSort == "Location" && ViewBag.CurrentSortOrder == "location")
+            {
+                <i class="glyphicon @(ViewBag.LocationNameSort == "Location" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+            }
         </th>
         <th>
             @Html.ActionLink("Unique Products", "Index", new { sortOrder = ViewBag.CountSort })
+            @if (ViewBag.CountSort == "Count" && ViewBag.CurrentSortOrder == "count")
+            {
+                <i class="glyphicon @(ViewBag.CountSort == "Count" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+            }
+            else if (ViewBag.CountSort == "count_desc" && ViewBag.CurrentSortOrder == "count")
+            {
+                <i class="glyphicon @(ViewBag.CountSort == "count_desc" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+            }
         </th>
         <th></th>
     </tr>
@@ -46,6 +70,7 @@
                 @Html.DisplayFor(modelItem => item.UniqueProducts)
             </td>
             <td>
+                <span class="glyphicon glyphicon-shopping-cart"></span>
                 @Html.ActionLink("Add Inventory", "Create", new { id = item.StoreId }) |
                 @Html.ActionLink("Inventory Details", "InventoryIndex", new { id = item.StoreId }) |
                 @Html.ActionLink("Store Details", "Details", "Store", new { id = item.StoreId }, null)

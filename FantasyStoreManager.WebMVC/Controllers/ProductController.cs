@@ -26,6 +26,26 @@ namespace FantasyStoreManager.WebMVC.Controllers
                 item.TypeOfProductString = PrivateEnumHelper(item.TypeOfProduct);
             }
 
+            string sortType = "";
+            switch (sortOrder)
+            {
+                default:
+                case "productName_desc":
+                    sortType = "name";
+                    break;
+
+                case "ProductType":
+                case "productType_desc":
+                    sortType = "type";
+                    break;
+
+                case "Magic":
+                case "non_magic":
+                    sortType = "magic";
+                    break;
+            }
+            ViewBag.CurrentSortOrder = sortType;
+
             return View(model);
         }
 

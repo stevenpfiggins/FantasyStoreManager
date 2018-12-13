@@ -23,12 +23,28 @@
     <tr>
         <th>
             @Html.ActionLink("Product Name", "InventoryIndex", new { sortOrder = ViewBag.ProductNameSort })
+            @if (ViewBag.ProductNameSort == "productName_desc" && ViewBag.CurrentSortOrder == "name")
+            {
+                <i class="glyphicon @(ViewBag.ProductNameSort == "productName_desc" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+            }
+            else if (ViewBag.ProductNameSort == "" && ViewBag.CurrentSortOrder == "name")
+            {
+                <i class="glyphicon @(ViewBag.ProductNameSort == "" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+            }
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
             @Html.ActionLink("Quantity", "InventoryIndex", new { sortOrder = ViewBag.QuantitySort })
+            @if (ViewBag.QuantitySort == "Quantity" && ViewBag.CurrentSortOrder == "quantity")
+            {
+                <i class="glyphicon @(ViewBag.QuantitySort == "Quantity" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+            }
+            else if (ViewBag.QuantitySort == "quantity_desc" && ViewBag.CurrentSortOrder == "quantity")
+            {
+                <i class="glyphicon @(ViewBag.QuantitySort == "quantity_desc" ? "glyphicon-arrow-up" : "glyphicon-arrow-down")"></i>
+            }
         </th>
         <th></th>
     </tr>
