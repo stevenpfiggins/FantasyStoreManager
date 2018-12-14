@@ -5,7 +5,7 @@
 <div class="productHeader">
     <h2 id="productHeaderSize">Products</h2>
 </div>
-<div class="table-surround">
+<div class="surround">
     <p>
         @Html.ActionLink("Craft a Product", "Create")
         <span class="glyphicon glyphicon-tag"></span>
@@ -53,7 +53,7 @@
                 @Html.ActionLink("Magical/Non-Magical", "Index", new { sortOrder = ViewBag.MagicSort })
                 @if (ViewBag.MagicSort == "non_magic" && ViewBag.CurrentSortOrder == "magic")
                 {
-                    <i class="glyphicon @(ViewBag.MagicSort == "non-magic" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
+                    <i class="glyphicon @(ViewBag.MagicSort == "non_magic" ? "glyphicon-arrow-down" : "glyphicon-arrow-up")"></i>
                 }
                 else if (ViewBag.MagicSort == "Magic" && ViewBag.CurrentSortOrder == "magic")
                 {

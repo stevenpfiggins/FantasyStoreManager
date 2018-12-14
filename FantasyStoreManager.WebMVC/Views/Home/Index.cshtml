@@ -13,7 +13,14 @@
                 <div class="caption">
                     <h3>Store Builder</h3>
                     <p>Increase your market by building stores in new locations!</p>
-                    <p><a href="@Url.Action("Index", "Store")" class="btn btn-primary" role="button">Stores</a></p>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <p><a href="@Url.Action("Index", "Store")" class="btn btn-primary" role="button">Stores</a></p>
+                    }
+                    else
+                    {
+                        <p><a href="@Url.Action("Login", "Account")" class="btn btn-primary" role="button">Stores</a></p>
+                    }
                 </div>
             </div>
         </div>
@@ -23,7 +30,14 @@
                 <div class="caption">
                     <h3>Craft Products</h3>
                     <p>Sell more things by crafting new products to be sold in your stores!</p>
-                    <p><a href="@Url.Action("Index", "Product")" class="btn btn-primary" role="button">Products</a></p>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <p><a href="@Url.Action("Index", "Product")" class="btn btn-primary" role="button">Products</a></p>
+                    }
+                    else
+                    {
+                        <p><a href="@Url.Action("Login", "Account")" class="btn btn-primary" role="button">Products</a></p>
+                    }
                 </div>
             </div>
         </div>
@@ -33,7 +47,14 @@
                 <div class="caption">
                     <h3>Stock Inventory</h3>
                     <p>Keep your stores stocked by updating and adding new inventories!</p>
-                    <p><a href="@Url.Action("Index", "Inventory")" class="btn btn-primary" role="button">Inventories</a></p>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <p><a href="@Url.Action("Index", "Inventory")" class="btn btn-primary" role="button">Inventories</a></p>
+                    }
+                    else
+                    {
+                        <p><a href="@Url.Action("Login", "Account")" class="btn btn-primary" role="button">Inventories</a></p>
+                    }
                 </div>
             </div>
         </div>

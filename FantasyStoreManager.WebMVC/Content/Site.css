@@ -9,7 +9,7 @@
     background-color: transparent;
 }
 
-.table-surround {
+.surround {
     border: 2px solid black;
     border-radius: 5%;
     background-color: #e6eced;
@@ -111,7 +111,7 @@ th, td, dt, dd, p, .form-group, address {
 }
 
 .thumbnail {
-    background-color: lightgray;
+    background-color: #e6eced;
 }
 
 /* Set padding to keep content from hitting the edges */

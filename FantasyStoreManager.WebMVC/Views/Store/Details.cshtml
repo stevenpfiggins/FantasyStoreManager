@@ -7,47 +7,48 @@
 <div class="storeHeader">
     <h2 id="storeHeaderSize">Details</h2>
 </div>
+<div class="surround">
+    <div>
+        <h4>Store Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.StoreId)
+            </dt>
 
-<div>
-    <h4>Store Details</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StoreId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StoreId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.StoreId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TypeOfStore)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TypeOfStore)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TypeOfStore)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TypeOfStore)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Refurbish", "Edit", new { id = Model.StoreId }) |
+        @Html.ActionLink("Back to Stores", "Index") |
+        @Html.ActionLink("Back to Inventories", "Index", "Inventory")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Refurbish", "Edit", new { id = Model.StoreId }) |
-    @Html.ActionLink("Back to Stores", "Index") |
-    @Html.ActionLink("Back to Inventories", "Index", "Inventory")
-</p>
