@@ -48,7 +48,11 @@ namespace FantasyStoreManager.WebMVC.Controllers
         //GET:
         public ActionResult Create(int id)
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            var productService = CreateProductService();
+            if (productService.GetProducts("").Count() == 0)
+            {
+                return RedirectToAction("Create", "Product");
+            }
             var svc = CreateInventoryService();
             var service = CreateStoreService();
             var storeDetail = service.GetStoreById(id);
@@ -186,6 +190,13 @@ namespace FantasyStoreManager.WebMVC.Controllers
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new StoreService(userId);
+            return service;
+        }
+
+        private ProductService CreateProductService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new ProductService(userId);
             return service;
         }
 
