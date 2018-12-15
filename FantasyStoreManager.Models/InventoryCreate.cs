@@ -19,6 +19,7 @@ namespace FantasyStoreManager.Models
         [Display(Name ="Product Select")]
         public int ProductId { get; set; }
 
+        [Range(0, 1000000, ErrorMessage = "Quantity must be between 0 and 1000000")]
         public int Quantity { get; set; }
 
         public List<InventoryListItem> Inventories { get; set; }
