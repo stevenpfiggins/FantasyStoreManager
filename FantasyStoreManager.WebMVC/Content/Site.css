@@ -47,6 +47,7 @@ th, td, dt, dd, p, .form-group, address {
     margin-right: auto;
     z-index: 2;
     animation: swing 7.0s infinite alternate ease-in-out;
+    -webkit-animation: swing 7.0s infinite alternate ease-in-out;
     transform-origin: top;
 }
 
@@ -57,10 +58,12 @@ th, td, dt, dd, p, .form-group, address {
 @keyframes swing {
     0% {
         transform: rotate(-5deg);
+        -webkit-transform: rotate(-5deg);
     }
 
     100% {
         transform: rotate(5deg);
+        -webkit-transform: rotate(5deg);
     }
 }
 
