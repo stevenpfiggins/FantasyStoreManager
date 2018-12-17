@@ -46,8 +46,16 @@ th, td, dt, dd, p, .form-group, address {
     margin-left: auto;
     margin-right: auto;
     z-index: 2;
+}
+
+#mylogo {
+    -webkit-animation-name: swing;
+    -webkit-animation-duration: 7.0s;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-transform-origin: top;
     animation: swing 7.0s infinite alternate ease-in-out;
-    -webkit-animation: swing 7.0s infinite alternate ease-in-out;
     transform-origin: top;
 }
 
@@ -55,15 +63,18 @@ th, td, dt, dd, p, .form-group, address {
     padding-top: 15%;
 }
 
+@-webkit-keyframes swing {
+    0% {-webkit-transform: rotate(-5deg);}
+    100% {-webkit-transform: rotate(5deg);}
+}
+
 @keyframes swing {
     0% {
         transform: rotate(-5deg);
-        -webkit-transform: rotate(-5deg);
     }
 
     100% {
         transform: rotate(5deg);
-        -webkit-transform: rotate(5deg);
     }
 }
 
