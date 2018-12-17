@@ -34,11 +34,6 @@ th, td, dt, dd, p, .form-group, address {
     color: darkgrey;
 }
 
-#homepage {
-    background: url("Assets/road-town-paved-old-town.jpg") no-repeat center;
-    background-size: cover;
-}
-
 #mylogo {
     content: "";
     display: block;

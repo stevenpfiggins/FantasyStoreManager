@@ -1,4 +1,5 @@
-﻿using FantasyStoreManager.Data;
+﻿using FantasyStoreManager.Contracts;
+using FantasyStoreManager.Data;
 using FantasyStoreManager.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FantasyStoreManager.Services
 {
-    public class StoreService
+    public class StoreService : IStoreService
     {
         private readonly Guid _userId;
 

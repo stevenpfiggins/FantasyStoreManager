@@ -54,11 +54,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IInventoryService.cs" />
+    <Compile Include="IProductService.cs" />
+    <Compile Include="IStoreService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FantasyStoreManager.Data\FantasyStoreManager.Data.csproj">
+      <Project>{DE4C6DE8-7AB1-426C-8BFC-1DA101DF3B66}</Project>
+      <Name>FantasyStoreManager.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FantasyStoreManager.Models\FantasyStoreManager.Models.csproj">
+      <Project>{7B0CAEBF-0A37-4824-8B8E-CD74D98A965B}</Project>
+      <Name>FantasyStoreManager.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

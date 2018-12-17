@@ -64,6 +64,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FantasyStoreManager.Contracts\FantasyStoreManager.Contracts.csproj">
+      <Project>{C0AAB28B-7AF1-4FCF-8460-EECABB25F2B8}</Project>
+      <Name>FantasyStoreManager.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FantasyStoreManager.Data\FantasyStoreManager.Data.csproj">
       <Project>{de4c6de8-7ab1-426c-8bfc-1da101df3b66}</Project>
       <Name>FantasyStoreManager.Data</Name>
