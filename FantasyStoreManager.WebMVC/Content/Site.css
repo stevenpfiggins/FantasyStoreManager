@@ -13,7 +13,7 @@
     border: 2px solid black;
     border-radius: 5%;
     background-color: #e6eced;
-    padding: 5%;
+    padding: 1%;
     margin-top: 2.5%;
 }
 
@@ -42,10 +42,9 @@ th, td, dt, dd, p, .form-group, address {
 #mylogo {
     content: "";
     display: block;
-    position: relative;
+    position: static;
     margin-left: auto;
     margin-right: auto;
-    z-index: 2;
 }
 
 #mylogo {
@@ -60,12 +59,18 @@ th, td, dt, dd, p, .form-group, address {
 }
 
 .navbar-brand {
-    padding-top: 15%;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 @-webkit-keyframes swing {
-    0% {-webkit-transform: rotate(-5deg);}
-    100% {-webkit-transform: rotate(5deg);}
+    0% {
+        -webkit-transform: rotate(-5deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(5deg);
+    }
 }
 
 @keyframes swing {
@@ -78,26 +83,9 @@ th, td, dt, dd, p, .form-group, address {
     }
 }
 
-.productHeader {
-    background: url("Assets/pexels-photo-208674.jpeg") no-repeat center;
-    background-size: cover;
-    width: 100%;
-    text-align: center;
-    color: white;
-    padding: 2% 2% 2% 2%;
-    border-radius: 5% 5%;
-    margin-top: 1%;
-    
-}
-
-#productHeaderSize {
-    font-size: 800%;
-}
-
 .storeHeader {
     background: url("Assets/craft-monochrome-old-162631.jpg") no-repeat center;
     background-size: cover;
-    width: 100%;
     text-align: center;
     color: white;
     padding: 2% 2% 2% 2%;
@@ -106,13 +94,26 @@ th, td, dt, dd, p, .form-group, address {
 }
 
 #storeHeaderSize {
-    font-size: 800%;
+    font-size: 8em;
+}
+
+.productHeader {
+    background: url("Assets/pexels-photo-208674.jpeg") no-repeat center;
+    background-size: cover;
+    text-align: center;
+    color: white;
+    padding: 2% 2% 2% 2%;
+    border-radius: 5% 5%;
+    margin-top: 1%;
+}
+
+#productHeaderSize {
+    font-size: 8em;
 }
 
 .inventoryHeader {
     background: url("Assets/alcohol-barrel-basement-434311.jpg") no-repeat center;
     background-size: cover;
-    width: 100%;
     text-align: center;
     color: white;
     padding: 2% 2% 2% 2%;
@@ -121,7 +122,34 @@ th, td, dt, dd, p, .form-group, address {
 }
 
 #inventoryHeaderSize {
-    font-size: 800%;
+    font-size: 8em;
+}
+
+@media only screen and (max-width: 768px) {
+    #inventoryHeaderSize, #productHeaderSize, #storeHeaderSize {
+        font-size: xx-large;
+    }
+
+    #mylogo {
+        content: "";
+        display: block;
+        position: static;
+        margin-left: auto;
+        margin-right: auto;
+        height: 275px;
+        width: 275px;
+    }
+
+    #mylogo {
+        -webkit-animation-name: swing;
+        -webkit-animation-duration: 7.0s;
+        -webkit-animation-direction: alternate;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: ease-in-out;
+        -webkit-transform-origin: top;
+        animation: swing 7.0s infinite alternate ease-in-out;
+        transform-origin: top;
+    }
 }
 
 .thumbnail {
