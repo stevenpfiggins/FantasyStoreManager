@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyStoreManager.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyStoreManager.Utils", "FantasyStoreManager.Utils\FantasyStoreManager.Utils.csproj", "{238FA17C-7734-43F6-810B-EE87F276C522}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyStoreManager.WebApi", "FantasyStoreManager.WebApi\FantasyStoreManager.WebApi.csproj", "{76203715-3D3F-4FDD-AC60-960820952814}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{238FA17C-7734-43F6-810B-EE87F276C522}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{238FA17C-7734-43F6-810B-EE87F276C522}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{238FA17C-7734-43F6-810B-EE87F276C522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76203715-3D3F-4FDD-AC60-960820952814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76203715-3D3F-4FDD-AC60-960820952814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76203715-3D3F-4FDD-AC60-960820952814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76203715-3D3F-4FDD-AC60-960820952814}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

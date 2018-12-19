@@ -13,6 +13,10 @@ using FantasyStoreManager.Data;
 
 namespace FantasyStoreManager.WebMVC.Controllers
 {
+
+#if !DEBUG
+    [RequireHttps]
+#endif
     [Authorize]
     public class AccountController : Controller
     {
@@ -424,7 +428,7 @@ namespace FantasyStoreManager.WebMVC.Controllers
             base.Dispose(disposing);
         }
 
-        #region Helpers
+#region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -481,6 +485,6 @@ namespace FantasyStoreManager.WebMVC.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+#endregion
     }
 }
