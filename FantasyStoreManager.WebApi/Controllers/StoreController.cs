@@ -25,7 +25,7 @@ namespace FantasyStoreManager.WebApi.Controllers
         {
             StoreService storeService = CreateStoreService();
             var store = storeService.GetStoreById(id);
-            return Ok();
+            return Ok(store);
         }
 
         public IHttpActionResult Post(StoreCreate store)
